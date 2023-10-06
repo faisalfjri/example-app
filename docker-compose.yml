@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+    example-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: faisalfjri/example-app
+        container_name: example-app
+        restart: unless-stopped
+        working_dir: /var/www/html/example-app
+        volumes:
+            - ./:/var/www/html/example-app
+        ports:
+            - 8009:8009
+        networks:
+            - shared_network
+
+networks:
+    shared_network:
+        driver: bridge
+        name: shared_network
